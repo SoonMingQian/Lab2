@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // getting-started.js
+//MongoDB connection setup
 const mongoose = require('mongoose');
 
 main().catch(err => console.log(err));
