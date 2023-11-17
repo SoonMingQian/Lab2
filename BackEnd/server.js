@@ -29,14 +29,17 @@ async function main() {
     // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 
+//Define book schema
 const bookSchema = new mongoose.Schema({
     title:String,
     cover:String,
     author:String
 })
 
+//Create a model based on the schema
 const bookModel = mongoose.model('books', bookSchema);
 
+//POST endpoint to add a new book
 app.post('/api/books', (req, res) => {
     console.log(req.body);
     bookModel.create({
@@ -66,6 +69,7 @@ app.get('/api/books', async (req, res) => {
     res.json(books);
 })
 
+//Route to fetch a specific book by ID
 app.get('/api/book/:id', async (req, res) => {
     console.log(req.params.id);
     let books = await bookModel.findById({_id:req.params.id})
